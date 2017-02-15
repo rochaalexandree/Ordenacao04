@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Ordenacao03{
 
-     public static void countingSort(int arr[]){
+     public static void countingSort(int arr[], int menor){
         //int n = arr.length;
 
         int maior = arr[0];
@@ -37,6 +37,9 @@ public class Ordenacao03{
             arr[i] = back[i];
         }
 
+        for(int i = 0; i < arr.length; i++)
+                    arr[i] -= menor;
+
         //printa o array
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
@@ -45,7 +48,7 @@ public class Ordenacao03{
 
     }
 
-    public static void bucketSort(int[] arr) {
+    public static void bucketSort(int[] , int menor) {
           int maxvalor = arr[0];
         for(int j = 1 ; j < arr.length;j++){
            if(arr[j]> maxvalor)
@@ -69,6 +72,9 @@ public class Ordenacao03{
                 arr[outPos++]=i;
              }
           }
+
+          for(int i = 0; i < arr.length; i++)
+                    arr[i] -= menor;
 
           for(int i = 0; i < arr.length; i++)
             System.out.println(arr[i]);
@@ -106,11 +112,14 @@ public class Ordenacao03{
             }
 
 
-    public static void radixSort(int arr[], int n){
+    public static void radixSort(int arr[], int n, int menor){
             int max = maxValue(arr, n);
 
             for (int exp = 1; max/exp > 0; exp *= 10)
                 countSort(arr, n, exp);
+
+            for(int i = 0; i < n; i++)
+                    arr[i] -= menor;
 
             for (int i=0; i<n; i++)
                 System.out.println(arr[i]);
@@ -314,7 +323,7 @@ public class Ordenacao03{
                 insertionSort(vetor);
                 System.out.println("Executou o Insertion");
             } else if(menor >= 0){
-                countingSort(vetor);
+                countingSort(vetor, menor);
                 System.out.println("Executou o Counting");
             } else {
                      /* Trecho para algoritmos lineares funcionarem com números negativos **/
@@ -323,7 +332,7 @@ public class Ordenacao03{
                     vetor[i] += menor;
 
                 if(vetor.length <= 100000){
-                    bucketSort(vetor);
+                    bucketSort(vetor, menor);
                     System.out.println("Executou o Bucket");
                 } else {
                     quickSort(vetor,0,vetor.length - 1);
