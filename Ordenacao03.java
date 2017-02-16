@@ -299,6 +299,53 @@ public class Ordenacao03{
             }*/
         }
 
+        public static boolean less(String s1, String s2) {
+        if (s1.compareTo(s2) < 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static void swap(ArrayList<String> ar, int i, int j) {
+        String aux = ar.get(i);
+        ar.set(i, ar.get(j));
+        ar.set(j, aux);
+    }
+
+    public static int partition(ArrayList<String> ar, int lo, int hi) {
+        int i = lo;
+        int j = hi + 1;
+        String p = ar.get(lo);
+
+        while(true) {
+
+            while(less(ar.get(++i), p)) 
+                if (i == hi) break;
+
+            while(less(p, ar.get(--j))) 
+                if (j == lo) break;
+
+            if (i >= j) break;
+
+            swap(ar, i, j);
+        }
+        swap(ar, lo, j);
+
+        return j;
+    }
+
+    public static void quick_sort(ArrayList<String> ar, int lo, int hi) {
+         if (hi <= lo) return;
+        int j = partition(ar, lo, hi);
+        quick_sort(ar, lo, j-1);
+        quick_sort(ar, j+1, hi);
+    }
+
+    public static void quick_sort(ArrayList<String> list) {
+        quick_sort(list, 0, list.size() - 1);
+    }
+
      public static void main(String[] args){
 
             String k = args[0];
@@ -318,7 +365,7 @@ public class Ordenacao03{
                     menor = x;
                 }
             }
-
+            
             if(vetor.length <= 8){
                 insertionSort(vetor);
                 System.out.println("Executou o Insertion");
