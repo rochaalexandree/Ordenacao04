@@ -48,7 +48,7 @@ public class Ordenacao03{
 
     }
 
-    public static void bucketSort(int[] , int menor) {
+    public static void bucketSort(int[] arr, int menor) {
           int maxvalor = arr[0];
         for(int j = 1 ; j < arr.length;j++){
            if(arr[j]> maxvalor)
@@ -365,7 +365,7 @@ public class Ordenacao03{
                     menor = x;
                 }
             }
-            
+
             if(vetor.length <= 8){
                 insertionSort(vetor);
                 System.out.println("Executou o Insertion");
