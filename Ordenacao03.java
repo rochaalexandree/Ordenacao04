@@ -167,16 +167,13 @@ public class Ordenacao03{
 	}
 
 	public static void sort(double[] ar, double max, double min) {
-		if (ar.length < 8) {
-			System.out.println("insertion");
+		if (ar.length < 8) {			
 			insertionSort(ar);
 		}
-		else if (max > Integer.MAX_VALUE || min < Integer.MIN_VALUE) {
-			System.out.println("quick");
+		else if (max > Integer.MAX_VALUE || min < Integer.MIN_VALUE) {			
 			quickSort(ar);
 		}
-		else if (max - min < 100000000) {
-			System.out.println("counting");
+		else if (max - min < 10000000) {			
 			int[] temp = new int[ar.length];
 
 			for (int i = 0; i < ar.length; ++i) {
@@ -189,37 +186,52 @@ public class Ordenacao03{
 				ar[i] = temp[i];
 			}
 		}
-		else {
-			System.out.println("quick");
+		else {			
 			quickSort(ar);	
 		}
 	}
 
 	public static void sort(ArrayList<String> ar) {
-
+		quickSort(ar);
 	}
 
 	public static void main(String[] args){
 
 		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();		
 
-		int n = in.nextInt();
-		double[] ar = new double[n];    
+		if (in.hasNextDouble()) {
+			
+			double[] ar = new double[n];    
 
-		double max = 0, min = 0;
+			double max = 0, min = 0;
 
-		for (int i = 0; i < n; ++i) {    
-			ar[i] = in.nextDouble();
+			for (int i = 0; i < n; ++i) {    
+				ar[i] = in.nextDouble();
 
-			if (min > ar[i]) min = ar[i];
-			if (max < ar[i]) max = ar[i];
-		}                                        		
+				if (min > ar[i]) min = ar[i];
+				if (max < ar[i]) max = ar[i];
+			}                                        		
 
-		sort(ar, max, min);
+			sort(ar, max, min);
 
-		for (int i = 0; i < n; ++i) {
-			System.out.println(ar[i]);
+			for (int i = 0; i < n; ++i) {
+				System.out.println(ar[i]);
+			}
+		} 
+		else if (in.hasNextLine()) {
+
+			ArrayList<String> str = new ArrayList<String>();
+
+			for (int i = 0; i < n; ++i) {    
+				str.add(in.nextLine());
+			} 
+
+			sort(str);		
+			
+			for (String s : str) {
+				System.out.println(s);
+			}						
 		}
-
 	}
 }
